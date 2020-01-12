@@ -79,9 +79,59 @@ class interPretr(object):
         :return:
         """
         min_hire_count = 0
+        cand_l = []
+        l_list = []
+        d = self.vertex_list.copy()
+        candidates_list = list()
+        languages_list = list()
+        for vertex in self.vertices:
+            if vertex[1] == "candidate":
+                candidates_list.append(vertex[0])
+            else:
+                languages_list.append(vertex[0])
+        # find candidate count
+        candidates_count = len(candidates_list)
+        # find languages count
+        languages_count = len(languages_list)
+        temp = 0
+        while len(l_list)!=len(languages_list):
+            c = self.find_max(d)
+            cand_l.append(c)
+            l_list += d[c]
+            del(d[c])
+            d = self.adj_d(d, l_list)
+
+        min_hire_count = len(cand_l)
         print("--------Function displayHireList--------", file=self.f)
         print("No of candidates required to cover all languages: {}".format(min_hire_count), file=self.f)
+        for c in cand_l:
+            temp = [self.vertices[c][0]]
+            for l in self.vertex_list[c]:
+                temp.append(self.vertices[l][0])
+
+            print("/".join(temp), file=self.f)
+
         print("-----------------------------------------\n", file=self.f)
+
+    def adj_d(self, d, l_list):
+        temp = {}
+        for c, l in d.items():
+            temp_l = None
+            for ll in l_list:
+                if ll in l:
+                    l.remove(ll)
+            temp[c] = l
+        return temp
+
+    def find_max(self, d):
+        s = 0
+        k = None
+        for c, l in d.items():
+            t = len(l)
+            if s<t:
+                s=t
+                k=c
+        return k
 
     def displayCandidates(self, lang):
         language_vertex = (lang, "language")
@@ -167,44 +217,3 @@ class interPretr(object):
                     visited[i] = True
 
         return False, tranSlist
-
-    # def findDirectTranslator(self, langA, langB):
-    #     print("--------Function findDirectTranslator --------")
-    #
-    #     answer = "No"
-    #     candidates_list = list()
-    #
-    #     languages_list = list()
-    #
-    #     for vertex in self.vertices:
-    #         if vertex[1] == "candidate":
-    #             candidates_list.append(vertex[0])
-    #         else:
-    #             languages_list.append(vertex[0])
-    #
-    #     # Mark all the vertices as not visited
-    #     visited = [False] * len(self.vertices)
-    #
-    #     # Create a queue for BFS
-    #     queue = []
-    #
-    #     # Mark the source node as visited and enqueue it
-    #     queue.append(langA)
-    #     s_i = self.vertices.index((langA, "language"))
-    #     visited[s_i] = True
-    #
-    #     while queue:
-    #
-    #         # Dequeue a vertex from queue
-    #         n = queue.pop(0)
-    #
-    #         # If this adjacent node is the destination node,
-    #         # then return true
-    #         if n == langB:
-    #             answer = "Yes"
-    #
-    #     print("Language A: {}".format(langA))
-    #     print("Language B: {}".format(langB))
-    #
-    #     print("Direct Translator: {}.".format(answer))
-    #     print("-----------------------------------------\n")

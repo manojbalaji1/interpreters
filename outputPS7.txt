@@ -30,7 +30,11 @@ Bengali
 -----------------------------------------
 
 --------Function displayHireList--------
-No of candidates required to cover all languages: 0
+No of candidates required to cover all languages: 4
+Venkat/English/Kannada/Tamil/Telugu
+Harish/Punjabi/Gujarati/Hindi
+Paul/Malayalam/Marathi
+Nisha/Bengali
 -----------------------------------------
 
 --------Function displayCandidates --------
@@ -60,7 +64,7 @@ Direct Translator: No.
 --------Function findDirectTranslator --------
 Language A: Hindi
 Language B: Gujarati
-Direct Translator: Yes, Amjad can translate.
+Direct Translator: Yes, Harish can translate.
 -----------------------------------------
 
 --------Function findTransRelation --------

@@ -1,4 +1,5 @@
 from Interpreter.interpreters import interPretr
+
 open('outputPS7.txt', 'w').close()
 interp = interPretr()
 interp.readApplications(inputfile="inputPS7.txt")
@@ -11,20 +12,25 @@ with open("promptsPS7.txt") as promptfile:
         print(line)
         data = line.strip().split(":")
         if data[0].strip() == "showMinList":
-            interp.displayHireList()
-            pass
+            try:
+                interp.displayHireList()
+            except Exception as e:
+                pass
 
         elif data[0].strip() == "searchLanguage":
-            interp.displayCandidates(data[1].strip())
-            pass
+            try:
+                interp.displayCandidates(data[1].strip())
+            except Exception as e:
+                pass
 
         elif data[0].strip() == "DirectTranslate":
-            interp.findDirectTranslator(data[1].strip(), data[2].strip())
-            pass
+            try:
+                interp.findDirectTranslator(data[1].strip(), data[2].strip())
+            except Exception as e:
+                pass
 
         elif data[0].strip() == "TransRelation":
-            interp.findTransRelation(data[1].strip(), data[2].strip())
-            pass
-
-
-
+            try:
+                interp.findTransRelation(data[1].strip(), data[2].strip())
+            except Exception as e:
+                pass

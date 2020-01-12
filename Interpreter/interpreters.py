@@ -63,12 +63,14 @@ class interPretr(object):
         for candidate in candidates_list:
             print(candidate)
 
+        print("")
+
         print("List of languages:")
         # code for listing languages
         for language in languages_list:
             print(language)
 
-        print("-----------------------------------------")
+        print("-----------------------------------------\n")
 
     def displayHireList(self):
         """
@@ -80,38 +82,34 @@ class interPretr(object):
 
         print("--------Function displayHireList--------")
         print("No of candidates required to cover all languages: {}".format(min_hire_count))
-        print("-----------------------------------------")
-        pass
+        print("-----------------------------------------\n")
 
     def displayCandidates(self, lang):
         language_vertex = (lang, "language")
         language_index = self.vertices.index(language_vertex)
         print("--------Function displayCandidates --------")
         print("List of Candidates who can speak {}:".format(lang))
-        # for candidate_index in range(len(self.edges[language_index])):
-        #     # if self.edges[language_index][candidate_index]:
-        #     #     print(self.vertices[candidate_index][0])
-        #     print(self.edges[language_index])
-        print("-----------------------------------------")
+        for candidate_index in range(len(self.edges[language_index])):
+            if self.edges[language_index][candidate_index]:
+                print(self.vertices[candidate_index][0])
+        print("-----------------------------------------\n")
 
     def findDirectTranslator(self, langA, langB):
-        pass
+        print("--------Function findDirectTranslator --------")
+        print("Language A: {}".format(langA))
+        print("Language B: {}".format(langB))
+        answer = "No"
+        print("Direct Translator: {}.".format(answer))
+        print("-----------------------------------------\n")
 
     def findTransRelation(self, langA, langB):
-        pass
-
-    def transpose(self, mat, tr, N):
-        for i in range(N):
-            for j in range(N):
-                tr[i][j] = mat[j][i]
-
-                # Returns true if mat[N][N] is symmetric, else false
-
-    def isSymmetric(self, mat, N):
-        tr = [[0 for j in range(len(mat[0]))] for i in range(len(mat))]
-        self.transpose(mat, tr, N)
-        for i in range(N):
-            for j in range(N):
-                if (mat[i][j] != tr[i][j]):
-                    return False
-        return True
+        print("--------Function findTransRelation --------")
+        print("Language A: {}".format(langA))
+        print("Language B: {}".format(langB))
+        answer = "No"
+        transList = []
+        if len(transList):
+            print("Related: Yes, {}".format(transList))
+        else:
+            print("Related: No.")
+        print("-----------------------------------------")
